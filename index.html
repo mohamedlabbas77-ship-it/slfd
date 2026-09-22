@@ -23,83 +23,55 @@
     /* --- المشهد الأول: الفيديو والموسيقى --- */
     #scene-video {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0; width: 100%; height: 100%;
       z-index: 10;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      display: flex; justify-content: center; align-items: center;
       background-color: #000;
       transition: opacity 1s ease;
     }
 
     .bg-video {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.85;
+      top: 0; left: 0; width: 100%; height: 100%;
+      object-fit: cover; opacity: 0.85;
     }
 
     #start-btn {
-      position: relative;
-      z-index: 20;
-      padding: 16px 36px;
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #fff;
-      background: rgba(255, 255, 255, 0.15);
+      position: relative; z-index: 20;
+      padding: 16px 36px; font-size: 1.2rem; font-weight: bold;
+      color: #fff; background: rgba(255, 255, 255, 0.15);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.4);
-      border-radius: 50px;
-      cursor: pointer;
+      border-radius: 50px; cursor: pointer;
       box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
       transition: all 0.3s ease;
       font-family: 'Segoe UI', sans-serif;
     }
 
-    #start-btn:hover {
-      transform: scale(1.05);
-      background: rgba(255, 255, 255, 0.3);
-    }
+    #start-btn:hover { transform: scale(1.05); background: rgba(255, 255, 255, 0.3); }
 
     #greeting-text {
-      position: absolute;
-      z-index: 20;
-      font-size: 3rem;
-      font-weight: 800;
-      letter-spacing: 2px;
-      color: #ffffff;
-      text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-      display: none;
+      position: absolute; z-index: 20;
+      font-size: 3rem; font-weight: 800; letter-spacing: 2px; color: #ffffff;
+      text-shadow: 0 0 20px rgba(0, 0, 0, 0.8); display: none;
       animation: fadeIn 0.8s ease forwards;
       font-family: 'Segoe UI', sans-serif;
     }
 
-    /* --- المشهد الثاني: شاشة CMD مع الكتابة الحية --- */
-    #scene-cmd {
+    /* --- تنسيق الـ CMD العام --- */
+    .scene-cmd-container {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 5;
-      opacity: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 5; opacity: 0; display: none;
+      justify-content: center; align-items: center;
       background-color: #0c0c0c;
-      transition: opacity 1.5s ease;
+      transition: opacity 0.8s ease;
       padding: 15px;
+      flex-direction: column;
     }
 
     .cmd-window {
-      width: 100%;
-      max-width: 650px;
+      width: 100%; max-width: 680px;
       background-color: #000000;
       border: 1px solid #333333;
       border-radius: 8px;
@@ -108,126 +80,65 @@
     }
 
     .cmd-header {
-      background-color: #1f1f1f;
-      padding: 8px 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      background-color: #1f1f1f; padding: 8px 12px;
+      display: flex; align-items: center; gap: 8px;
       border-bottom: 1px solid #333;
     }
 
-    .cmd-btn {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      display: inline-block;
-    }
+    .cmd-btn { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
     .btn-red { background-color: #ff5f56; }
     .btn-yellow { background-color: #ffbd2e; }
     .btn-green { background-color: #27c93f; }
 
-    .cmd-title {
-      color: #888;
-      font-size: 0.85rem;
-      margin-left: 10px;
-    }
+    .cmd-title { color: #888; font-size: 0.85rem; margin-left: 10px; }
 
     .cmd-body {
-      padding: 20px;
-      color: #ff2e93;
-      font-size: 0.85rem;
-      line-height: 1.2;
-      overflow-x: auto;
-      text-shadow: 0 0 8px rgba(255, 46, 147, 0.6);
-      min-height: 320px;
+      padding: 20px; color: #ff2e93; font-size: 0.85rem; line-height: 1.3;
+      overflow-x: auto; text-shadow: 0 0 8px rgba(255, 46, 147, 0.6);
+      min-height: 330px;
     }
 
-    .cmd-path {
-      color: #cccccc;
-      margin-bottom: 15px;
-      font-size: 0.9rem;
-    }
+    .cmd-path { color: #cccccc; margin-bottom: 15px; font-size: 0.9rem; }
 
-    .heart-art {
-      font-weight: bold;
-      white-space: pre;
-      text-align: center;
-      margin: 15px 0;
-      display: block;
+    .art-display {
+      font-weight: bold; white-space: pre; text-align: center;
+      margin: 15px 0; display: block; color: #ff2e93;
     }
 
     .cmd-footer-text {
-      text-align: center;
-      font-size: 1.4rem;
-      font-weight: bold;
-      color: #ffffff;
-      margin-top: 15px;
-      letter-spacing: 1px;
-      text-shadow: 0 0 10px #ff2e93;
-      font-family: 'Segoe UI', Tahoma, sans-serif;
+      text-align: center; font-size: 1.2rem; font-weight: bold;
+      color: #ffffff; margin-top: 15px; letter-spacing: 1px;
+      text-shadow: 0 0 10px #ff2e93; font-family: 'Segoe UI', Tahoma, sans-serif;
     }
+
+    .next-btn {
+      margin-top: 20px; padding: 12px 28px; font-size: 1rem; font-weight: bold;
+      color: #fff; background: #ff2e93; border: none; border-radius: 25px;
+      cursor: pointer; box-shadow: 0 0 15px rgba(255, 46, 147, 0.5);
+      transition: all 0.3s ease; opacity: 0; pointer-events: none;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .next-btn.visible { opacity: 1; pointer-events: auto; }
+    .next-btn:hover { transform: scale(1.08); background: #ff50a6; }
 
     .cursor {
-      display: inline-block;
-      width: 8px;
-      height: 18px;
-      background-color: #ff2e93;
-      vertical-align: middle;
+      display: inline-block; width: 8px; height: 18px;
+      background-color: #ff2e93; vertical-align: middle;
       animation: blink 0.8s infinite;
-    }
-
-    /* --- المشهد الثالث: صورة العناق الدافئة --- */
-    #scene-hug {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      opacity: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background: radial-gradient(circle at center, #2d122d 0%, #05020a 100%);
-      transition: opacity 2s ease;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .hug-art {
-      font-size: 7.5rem;
-      filter: drop-shadow(0 0 20px rgba(255, 105, 180, 0.6));
-      animation: float 3s ease-in-out infinite;
-    }
-
-    .hug-message {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: #ffffff;
-      margin-top: 25px;
-      font-family: 'Segoe UI', sans-serif;
-      text-shadow: 0 0 15px rgba(255, 182, 193, 0.8);
-      background: rgba(255, 255, 255, 0.08);
-      padding: 15px 30px;
-      border-radius: 30px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(5px);
     }
 
     @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
     @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
   </style>
 </head>
 <body>
 
-  <!-- المشهد الأول: فيديو المنظر الخلاب والموسيقى -->
+  <!-- المشهد الأول: فيديو ورسالة السلام -->
   <div id="scene-video">
     <video id="myVideo" class="bg-video" loop playsinline preload="auto">
       <source src="https://assets.mixkit.co/videos/preview/mixkit-dramatic-time-lapse-of-clouds-and-mountains-4220-large.mp4" type="video/mp4">
     </video>
-
     <button id="start-btn" onclick="startExperience()">✨ Cliquez ici pour commencer</button>
     <div id="greeting-text">Slm Slfd</div>
   </div>
@@ -236,131 +147,180 @@
     <source src="https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- المشهد الثاني: الـ CMD المكتوب حياً -->
-  <div id="scene-cmd">
+  <!-- الـ CMD الأول: رسم القلب حبة حبة -->
+  <div id="scene-cmd-1" class="scene-cmd-container">
     <div class="cmd-window">
       <div class="cmd-header">
-        <span class="cmd-btn btn-red"></span>
-        <span class="cmd-btn btn-yellow"></span>
-        <span class="cmd-btn btn-green"></span>
-        <span class="cmd-title">C:\Windows\System32\cmd.exe - Soulefed.exe</span>
+        <span class="cmd-btn btn-red"></span><span class="cmd-btn btn-yellow"></span><span class="cmd-btn btn-green"></span>
+        <span class="cmd-title">C:\Windows\System32\cmd.exe - heart.exe</span>
       </div>
       <div class="cmd-body">
-        <div class="cmd-path" id="type-path"></div>
-        <pre class="heart-art" id="type-heart"></pre>
-        <div class="cmd-footer-text" id="type-footer"></div>
+        <div class="cmd-path" id="cmd1-path"></div>
+        <pre class="art-display" id="cmd1-heart"></pre>
+        <div class="cmd-footer-text" id="cmd1-footer"></div>
       </div>
     </div>
+    <button class="next-btn" id="btn-next-1" onclick="goToCmd2()">Suivant ➡️</button>
   </div>
 
-  <!-- المشهد الثالث: صورة العناق النهائي -->
-  <div id="scene-hug">
-    <div class="hug-art">👩‍❤️‍👨</div>
-    <div class="hug-message">
-      Mohamed & Soulefed ❤️✨
+  <!-- الـ CMD الثاني: تقديم الشاورما -->
+  <div id="scene-cmd-2" class="scene-cmd-container">
+    <div class="cmd-window">
+      <div class="cmd-header">
+        <span class="cmd-btn btn-red"></span><span class="cmd-btn btn-yellow"></span><span class="cmd-btn btn-green"></span>
+        <span class="cmd-title">C:\Windows\System32\cmd.exe - shawarma_offer.exe</span>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-path" id="cmd2-path"></div>
+        <pre class="art-display" id="cmd2-art"></pre>
+        <div class="cmd-footer-text" id="cmd2-footer"></div>
+      </div>
+    </div>
+    <button class="next-btn" id="btn-next-2" onclick="goToCmd3()">Suivant ➡️</button>
+  </div>
+
+  <!-- الـ CMD الثالث: الرسالة والقلوب الصغيرة -->
+  <div id="scene-cmd-3" class="scene-cmd-container">
+    <div class="cmd-window">
+      <div class="cmd-header">
+        <span class="cmd-btn btn-red"></span><span class="cmd-btn btn-yellow"></span><span class="cmd-btn btn-green"></span>
+        <span class="cmd-title">C:\Windows\System32\cmd.exe - final_message.exe</span>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-path" id="cmd3-path"></div>
+        <div style="text-align:center; font-size: 1.3rem; margin: 10px 0;">💕 💖 💗 💓 🌸 💓 💗 💖 💕</div>
+        <div class="cmd-footer-text" id="cmd3-footer" style="color:#00ffcc; text-shadow:0 0 10px #00ffcc; line-height:1.6;"></div>
+      </div>
     </div>
   </div>
 
   <script>
-    const heartText = 
-`   @@@@@@@@      @@@@@@@@   
- @@@@@@@@@@@@  @@@@@@@@@@@@ 
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-  @@@@@@@@@@@@@@@@@@@@@@@@  
-    @@@@@@@@@@@@@@@@@@@@    
-      @@@@@@@@@@@@@@@@      
-        @@@@@@@@@@@@        
-          @@@@@@@@          
-            @@@@            
-             @@             `;
+    const heartLines = [
+      "   @@@@@@@@      @@@@@@@@   ",
+      " @@@@@@@@@@@@  @@@@@@@@@@@@ ",
+      "@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
+      "@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
+      "@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
+      "  @@@@@@@@@@@@@@@@@@@@@@@@  ",
+      "    @@@@@@@@@@@@@@@@@@@@    ",
+      "      @@@@@@@@@@@@@@@@      ",
+      "        @@@@@@@@@@@@        ",
+      "          @@@@@@@@          ",
+      "            @@@@            ",
+      "             @@             "
+    ];
+
+    const shawarmaArt = [
+      "      (  Mohamed  )         ",
+      "        \\  o /   🥙         ",
+      "         \\ | /  ====>  👩   ",
+      "          / \\         (Soulefed)"
+    ];
 
     function startExperience() {
-      const startBtn = document.getElementById('start-btn');
-      const video = document.getElementById('myVideo');
-      const music = document.getElementById('bgMusic');
-      const greeting = document.getElementById('greeting-text');
-      const sceneVideo = document.getElementById('scene-video');
-      const sceneCmd = document.getElementById('scene-cmd');
-
-      startBtn.style.display = 'none';
-      video.play();
-      music.play();
+      document.getElementById('start-btn').style.display = 'none';
+      document.getElementById('myVideo').play();
+      document.getElementById('bgMusic').play();
 
       setTimeout(() => {
-        greeting.style.display = 'block';
-
+        document.getElementById('greeting-text').style.display = 'block';
         setTimeout(() => {
-          sceneVideo.style.opacity = '0';
-          
+          document.getElementById('scene-video').style.opacity = '0';
           setTimeout(() => {
-            sceneVideo.style.display = 'none';
-            sceneCmd.style.opacity = '1';
-            
-            // بدء طباعة الأمر تلقائياً أمام عينها
-            runCmdAnimation();
+            document.getElementById('scene-video').style.display = 'none';
+            showCmd1();
           }, 1000);
-
         }, 2000);
-
       }, 3000);
     }
 
-    // كتابة الأوامر حية حرفاً بحرف
-    function runCmdAnimation() {
-      const pathEl = document.getElementById('type-path');
-      const heartEl = document.getElementById('type-heart');
-      const footerEl = document.getElementById('type-footer');
-      const sceneCmd = document.getElementById('scene-cmd');
-      const sceneHug = document.getElementById('scene-hug');
+    /* --- تشغيل CMD 1 --- */
+    function showCmd1() {
+      const scene1 = document.getElementById('scene-cmd-1');
+      scene1.style.display = 'flex';
+      setTimeout(() => scene1.style.opacity = '1', 50);
 
-      const cmdLine = "C:\\Users\\Mohamed> run heart_program.exe";
+      const pathEl = document.getElementById('cmd1-path');
+      const heartEl = document.getElementById('cmd1-heart');
+      const footerEl = document.getElementById('cmd1-footer');
+      const cmdLine = "C:\\Users\\Mohamed> run heart_drawing.exe";
+
+      typeText(pathEl, cmdLine, 40, () => {
+        let lineIdx = 0;
+        function drawHeartStep() {
+          if (lineIdx < heartLines.length) {
+            heartEl.textContent += heartLines[lineIdx] + "\n";
+            lineIdx++;
+            setTimeout(drawHeartStep, 100); // رسم القلب سطر بسطر
+          } else {
+            typeText(footerEl, "Tahya Soulefed hermosa", 60, () => {
+              document.getElementById('btn-next-1').classList.add('visible');
+            });
+          }
+        }
+        drawHeartStep();
+      });
+    }
+
+    /* --- الانتقال إلى CMD 2 --- */
+    function goToCmd2() {
+      const scene1 = document.getElementById('scene-cmd-1');
+      const scene2 = document.getElementById('scene-cmd-2');
+      scene1.style.opacity = '0';
+      
+      setTimeout(() => {
+        scene1.style.display = 'none';
+        scene2.style.display = 'flex';
+        setTimeout(() => scene2.style.opacity = '1', 50);
+
+        const pathEl = document.getElementById('cmd2-path');
+        const artEl = document.getElementById('cmd2-art');
+        const footerEl = document.getElementById('cmd2-footer');
+
+        typeText(pathEl, "C:\\Users\\Mohamed> offer_shawarma.exe --to Soulefed", 40, () => {
+          artEl.textContent = shawarmaArt.join("\n");
+          typeText(footerEl, "Haki shawarma sp\u00e9ciale a chaba 🥙✨", 60, () => {
+            document.getElementById('btn-next-2').classList.add('visible');
+          });
+        });
+      }, 800);
+    }
+
+    /* --- الانتقال إلى CMD 3 --- */
+    function goToCmd3() {
+      const scene2 = document.getElementById('scene-cmd-2');
+      const scene3 = document.getElementById('scene-cmd-3');
+      scene2.style.opacity = '0';
+
+      setTimeout(() => {
+        scene2.style.display = 'none';
+        scene3.style.display = 'flex';
+        setTimeout(() => scene3.style.opacity = '1', 50);
+
+        const pathEl = document.getElementById('cmd3-path');
+        const footerEl = document.getElementById('cmd3-footer');
+
+        typeText(pathEl, "C:\\Users\\Mohamed> send_love_confession.exe", 40, () => {
+          const message = "slfd chofi kon ygolili tkhyr slfd wla aghla haja 3ndk ngolhm bli slfd hiya aghla haja 3ndi 💕";
+          typeText(footerEl, message, 70, null);
+        });
+      }, 800);
+    }
+
+    /* دالة طباعة النصوص حرفاً بحرف */
+    function typeText(element, text, speed, callback) {
       let i = 0;
-
-      // 1. كتابة مسار السطر الأول
-      function typePath() {
-        if (i < cmdLine.length) {
-          pathEl.textContent += cmdLine.charAt(i);
+      element.textContent = "";
+      function type() {
+        if (i < text.length) {
+          element.textContent += text.charAt(i);
           i++;
-          setTimeout(typePath, 50);
+          setTimeout(type, speed);
         } else {
-          pathEl.innerHTML += ' <span class="cursor"></span>';
-          setTimeout(typeHeart, 600);
+          if (callback) callback();
         }
       }
-
-      // 2. طباعة رسمة القلب خطوة بخطوة
-      function typeHeart() {
-        pathEl.querySelector('.cursor')?.remove();
-        heartEl.textContent = heartText;
-        setTimeout(typeFooter, 800);
-      }
-
-      // 3. كتابة العبارة النهائية
-      const footerText = "Tahya Soulefed hermosa";
-      let j = 0;
-
-      function typeFooter() {
-        if (j < footerText.length) {
-          footerEl.textContent += footerText.charAt(j);
-          j++;
-          setTimeout(typeFooter, 80);
-        } else {
-          footerEl.innerHTML += ' <span class="cursor"></span>';
-
-          // 4. الانتقال لمشهد العناق الأخير بعد 3 ثواني
-          setTimeout(() => {
-            sceneCmd.style.opacity = '0';
-            setTimeout(() => {
-              sceneCmd.style.display = 'none';
-              sceneHug.style.opacity = '1';
-            }, 1500);
-          }, 3500);
-        }
-      }
-
-      typePath();
+      type();
     }
   </script>
 </body>
