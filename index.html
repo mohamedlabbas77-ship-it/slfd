@@ -122,13 +122,6 @@
     .next-btn.visible { opacity: 1; pointer-events: auto; }
     .next-btn:hover { transform: scale(1.08); background: #ff50a6; }
 
-    .cursor {
-      display: inline-block; width: 8px; height: 18px;
-      background-color: #ff2e93; vertical-align: middle;
-      animation: blink 0.8s infinite;
-    }
-
-    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
     @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
   </style>
 </head>
@@ -147,7 +140,7 @@
     <source src="https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- الـ CMD الأول: رسم القلب حبة حبة -->
+  <!-- الـ CMD الأول: رسم القلب -->
   <div id="scene-cmd-1" class="scene-cmd-container">
     <div class="cmd-window">
       <div class="cmd-header">
@@ -168,7 +161,7 @@
     <div class="cmd-window">
       <div class="cmd-header">
         <span class="cmd-btn btn-red"></span><span class="cmd-btn btn-yellow"></span><span class="cmd-btn btn-green"></span>
-        <span class="cmd-title">C:\Windows\System32\cmd.exe - shawarma_offer.exe</span>
+        <span class="cmd-title">C:\Windows\System32\cmd.exe - offer_shawarma.exe</span>
       </div>
       <div class="cmd-body">
         <div class="cmd-path" id="cmd2-path"></div>
@@ -179,17 +172,33 @@
     <button class="next-btn" id="btn-next-2" onclick="goToCmd3()">Suivant ➡️</button>
   </div>
 
-  <!-- الـ CMD الثالث: الرسالة والقلوب الصغيرة -->
+  <!-- الـ CMD الثالث: الرسالة والقلوب -->
   <div id="scene-cmd-3" class="scene-cmd-container">
     <div class="cmd-window">
       <div class="cmd-header">
         <span class="cmd-btn btn-red"></span><span class="cmd-btn btn-yellow"></span><span class="cmd-btn btn-green"></span>
-        <span class="cmd-title">C:\Windows\System32\cmd.exe - final_message.exe</span>
+        <span class="cmd-title">C:\Windows\System32\cmd.exe - confession.exe</span>
       </div>
       <div class="cmd-body">
         <div class="cmd-path" id="cmd3-path"></div>
         <div style="text-align:center; font-size: 1.3rem; margin: 10px 0;">💕 💖 💗 💓 🌸 💓 💗 💖 💕</div>
         <div class="cmd-footer-text" id="cmd3-footer" style="color:#00ffcc; text-shadow:0 0 10px #00ffcc; line-height:1.6;"></div>
+      </div>
+    </div>
+    <button class="next-btn" id="btn-next-3" onclick="goToCmd4()">Suivant ➡️</button>
+  </div>
+
+  <!-- الـ CMD الرابع والأخير: الخاتمة بطيئة -->
+  <div id="scene-cmd-4" class="scene-cmd-container">
+    <div class="cmd-window">
+      <div class="cmd-header">
+        <span class="cmd-btn btn-red"></span><span class="cmd-btn btn-yellow"></span><span class="cmd-btn btn-green"></span>
+        <span class="cmd-title">C:\Windows\System32\cmd.exe - exit.exe</span>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-path" id="cmd4-path"></div>
+        <div style="text-align:center; font-size: 2rem; margin: 15px 0;">✨ 🌙 🫶🏼 😔 ✨</div>
+        <div class="cmd-footer-text" id="cmd4-footer" style="color:#ffb6c1; text-shadow:0 0 12px #ffb6c1; line-height:1.8; font-size: 1.3rem;"></div>
       </div>
     </div>
   </div>
@@ -234,7 +243,7 @@
       }, 3000);
     }
 
-    /* --- تشغيل CMD 1 --- */
+    /* CMD 1 */
     function showCmd1() {
       const scene1 = document.getElementById('scene-cmd-1');
       scene1.style.display = 'flex';
@@ -243,15 +252,14 @@
       const pathEl = document.getElementById('cmd1-path');
       const heartEl = document.getElementById('cmd1-heart');
       const footerEl = document.getElementById('cmd1-footer');
-      const cmdLine = "C:\\Users\\Mohamed> run heart_drawing.exe";
 
-      typeText(pathEl, cmdLine, 40, () => {
+      typeText(pathEl, "C:\\Users\\Mohamed> run heart_drawing.exe", 40, () => {
         let lineIdx = 0;
         function drawHeartStep() {
           if (lineIdx < heartLines.length) {
             heartEl.textContent += heartLines[lineIdx] + "\n";
             lineIdx++;
-            setTimeout(drawHeartStep, 100); // رسم القلب سطر بسطر
+            setTimeout(drawHeartStep, 100);
           } else {
             typeText(footerEl, "Tahya Soulefed hermosa", 60, () => {
               document.getElementById('btn-next-1').classList.add('visible');
@@ -262,7 +270,7 @@
       });
     }
 
-    /* --- الانتقال إلى CMD 2 --- */
+    /* CMD 2 */
     function goToCmd2() {
       const scene1 = document.getElementById('scene-cmd-1');
       const scene2 = document.getElementById('scene-cmd-2');
@@ -279,14 +287,14 @@
 
         typeText(pathEl, "C:\\Users\\Mohamed> offer_shawarma.exe --to Soulefed", 40, () => {
           artEl.textContent = shawarmaArt.join("\n");
-          typeText(footerEl, "Haki shawarma sp\u00e9ciale a chaba 🥙✨", 60, () => {
+          typeText(footerEl, "Haki shawarma spéciale a chaba 🥙✨", 60, () => {
             document.getElementById('btn-next-2').classList.add('visible');
           });
         });
       }, 800);
     }
 
-    /* --- الانتقال إلى CMD 3 --- */
+    /* CMD 3 */
     function goToCmd3() {
       const scene2 = document.getElementById('scene-cmd-2');
       const scene3 = document.getElementById('scene-cmd-3');
@@ -302,7 +310,31 @@
 
         typeText(pathEl, "C:\\Users\\Mohamed> send_love_confession.exe", 40, () => {
           const message = "slfd chofi kon ygolili tkhyr slfd wla aghla haja 3ndk ngolhm bli slfd hiya aghla haja 3ndi 💕";
-          typeText(footerEl, message, 70, null);
+          typeText(footerEl, message, 55, () => {
+            document.getElementById('btn-next-3').classList.add('visible');
+          });
+        });
+      }, 800);
+    }
+
+    /* CMD 4 (الأخير) */
+    function goToCmd4() {
+      const scene3 = document.getElementById('scene-cmd-3');
+      const scene4 = document.getElementById('scene-cmd-4');
+      scene3.style.opacity = '0';
+
+      setTimeout(() => {
+        scene3.style.display = 'none';
+        scene4.style.display = 'flex';
+        setTimeout(() => scene4.style.opacity = '1', 50);
+
+        const pathEl = document.getElementById('cmd4-path');
+        const footerEl = document.getElementById('cmd4-footer');
+
+        typeText(pathEl, "C:\\Users\\Mohamed> close_session.exe", 40, () => {
+          const finalMessage = "W hna c la fin netla9o f site whdkhr by ya khanza chaba🫶🏼✨❤️😔";
+          // سرعة الكتابة بطيئة (120ms لكل حرف)
+          typeText(footerEl, finalMessage, 120, null);
         });
       }, 800);
     }
