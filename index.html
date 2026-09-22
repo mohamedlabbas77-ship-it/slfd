@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pour Soulefed ✨</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Consolas', 'Courier New', Courier, monospace;
+    }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      background-color: #000000;
+      color: #ffffff;
+      overflow: hidden;
+    }
+
+    /* --- المشهد الأول: الفيديو والموسيقى --- */
+    #scene-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #000;
+      transition: opacity 1s ease;
+    }
+
+    .bg-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+    }
+
+    #start-btn {
+      position: relative;
+      z-index: 20;
+      padding: 16px 36px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    #start-btn:hover {
+      transform: scale(1.05);
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    #greeting-text {
+      position: absolute;
+      z-index: 20;
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #ffffff;
+      text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+      display: none;
+      animation: fadeIn 0.8s ease forwards;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    /* --- المشهد الثاني: شاشة الـ CMD والقلب --- */
+    #scene-cmd {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 5;
+      opacity: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #0c0c0c;
+      transition: opacity 1.5s ease;
+      padding: 15px;
+    }
+
+    .cmd-window {
+      width: 100%;
+      max-width: 650px;
+      background-color: #000000;
+      border: 1px solid #333333;
+      border-radius: 8px;
+      box-shadow: 0 0 30px rgba(255, 0, 127, 0.2);
+      overflow: hidden;
+    }
+
+    .cmd-header {
+      background-color: #1f1f1f;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid #333;
+    }
+
+    .cmd-btn {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .btn-red { background-color: #ff5f56; }
+    .btn-yellow { background-color: #ffbd2e; }
+    .btn-green { background-color: #27c93f; }
+
+    .cmd-title {
+      color: #888;
+      font-size: 0.85rem;
+      margin-left: 10px;
+    }
+
+    .cmd-body {
+      padding: 20px;
+      color: #ff2e93;
+      font-size: 0.85rem;
+      line-height: 1.2;
+      overflow-x: auto;
+      text-shadow: 0 0 8px rgba(255, 46, 147, 0.6);
+    }
+
+    .cmd-path {
+      color: #cccccc;
+      margin-bottom: 15px;
+      font-size: 0.9rem;
+    }
+
+    .heart-art {
+      font-weight: bold;
+      white-space: pre;
+      text-align: center;
+      margin: 15px 0;
+    }
+
+    .cmd-footer-text {
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ffffff;
+      margin-top: 20px;
+      letter-spacing: 1px;
+      text-shadow: 0 0 10px #ff2e93;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 18px;
+      background-color: #ff2e93;
+      vertical-align: middle;
+      animation: blink 0.8s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- المشهد الأول: فيديو ورسالة السلام -->
+  <div id="scene-video">
+    <video id="myVideo" class="bg-video" loop playsinline preload="auto">
+      <source src="https://assets.mixkit.co/videos/preview/mixkit-dramatic-time-lapse-of-clouds-and-mountains-4220-large.mp4" type="video/mp4">
+    </video>
+
+    <button id="start-btn" onclick="startExperience()">✨ Cliquez ici pour commencer</button>
+    <div id="greeting-text">Slm Slfd</div>
+  </div>
+
+  <audio id="bgMusic" loop preload="auto">
+    <source src="https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- المشهد الثاني: شاشة CMD مع القلب الكبير -->
+  <div id="scene-cmd">
+    <div class="cmd-window">
+      <div class="cmd-header">
+        <span class="cmd-btn btn-red"></span>
+        <span class="cmd-btn btn-yellow"></span>
+        <span class="cmd-btn btn-green"></span>
+        <span class="cmd-title">C:\Windows\System32\cmd.exe - Soulefed.exe</span>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-path">C:\Users\Mohamed> run heart_program.exe</div>
+        
+        <pre class="heart-art">
+   @@@@@@@@      @@@@@@@@   
+ @@@@@@@@@@@@  @@@@@@@@@@@@ 
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+  @@@@@@@@@@@@@@@@@@@@@@@@  
+    @@@@@@@@@@@@@@@@@@@@    
+      @@@@@@@@@@@@@@@@      
+        @@@@@@@@@@@@        
+          @@@@@@@@          
+            @@@@            
+             @@             
+        </pre>
+
+        <div class="cmd-footer-text">
+          Tahya Soulefed hermosa <span class="cursor"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function startExperience() {
+      const startBtn = document.getElementById('start-btn');
+      const video = document.getElementById('myVideo');
+      const music = document.getElementById('bgMusic');
+      const greeting = document.getElementById('greeting-text');
+      const sceneVideo = document.getElementById('scene-video');
+      const sceneCmd = document.getElementById('scene-cmd');
+
+      startBtn.style.display = 'none';
+      video.play();
+      music.play();
+
+      setTimeout(() => {
+        greeting.style.display = 'block';
+
+        setTimeout(() => {
+          sceneVideo.style.opacity = '0';
+          
+          setTimeout(() => {
+            sceneVideo.style.display = 'none';
+            sceneCmd.style.opacity = '1';
+          }, 1000);
+
+        }, 2000);
+
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
