@@ -80,7 +80,7 @@
       font-family: 'Segoe UI', sans-serif;
     }
 
-    /* --- المشهد الثاني: شاشة الـ CMD والقلب --- */
+    /* --- المشهد الثاني: شاشة CMD مع الكتابة الحية --- */
     #scene-cmd {
       position: fixed;
       top: 0;
@@ -103,7 +103,7 @@
       background-color: #000000;
       border: 1px solid #333333;
       border-radius: 8px;
-      box-shadow: 0 0 30px rgba(255, 0, 127, 0.2);
+      box-shadow: 0 0 35px rgba(255, 46, 147, 0.25);
       overflow: hidden;
     }
 
@@ -139,6 +139,7 @@
       line-height: 1.2;
       overflow-x: auto;
       text-shadow: 0 0 8px rgba(255, 46, 147, 0.6);
+      min-height: 320px;
     }
 
     .cmd-path {
@@ -152,14 +153,15 @@
       white-space: pre;
       text-align: center;
       margin: 15px 0;
+      display: block;
     }
 
     .cmd-footer-text {
       text-align: center;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       font-weight: bold;
       color: #ffffff;
-      margin-top: 20px;
+      margin-top: 15px;
       letter-spacing: 1px;
       text-shadow: 0 0 10px #ff2e93;
       font-family: 'Segoe UI', Tahoma, sans-serif;
@@ -174,20 +176,53 @@
       animation: blink 0.8s infinite;
     }
 
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
+    /* --- المشهد الثالث: صورة العناق الدافئة --- */
+    #scene-hug {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      opacity: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at center, #2d122d 0%, #05020a 100%);
+      transition: opacity 2s ease;
+      text-align: center;
+      padding: 20px;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
+    .hug-art {
+      font-size: 7.5rem;
+      filter: drop-shadow(0 0 20px rgba(255, 105, 180, 0.6));
+      animation: float 3s ease-in-out infinite;
     }
+
+    .hug-message {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-top: 25px;
+      font-family: 'Segoe UI', sans-serif;
+      text-shadow: 0 0 15px rgba(255, 182, 193, 0.8);
+      background: rgba(255, 255, 255, 0.08);
+      padding: 15px 30px;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(5px);
+    }
+
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
   </style>
 </head>
 <body>
 
-  <!-- المشهد الأول: فيديو ورسالة السلام -->
+  <!-- المشهد الأول: فيديو المنظر الخلاب والموسيقى -->
   <div id="scene-video">
     <video id="myVideo" class="bg-video" loop playsinline preload="auto">
       <source src="https://assets.mixkit.co/videos/preview/mixkit-dramatic-time-lapse-of-clouds-and-mountains-4220-large.mp4" type="video/mp4">
@@ -201,7 +236,7 @@
     <source src="https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- المشهد الثاني: شاشة CMD مع القلب الكبير -->
+  <!-- المشهد الثاني: الـ CMD المكتوب حياً -->
   <div id="scene-cmd">
     <div class="cmd-window">
       <div class="cmd-header">
@@ -211,10 +246,24 @@
         <span class="cmd-title">C:\Windows\System32\cmd.exe - Soulefed.exe</span>
       </div>
       <div class="cmd-body">
-        <div class="cmd-path">C:\Users\Mohamed> run heart_program.exe</div>
-        
-        <pre class="heart-art">
-   @@@@@@@@      @@@@@@@@   
+        <div class="cmd-path" id="type-path"></div>
+        <pre class="heart-art" id="type-heart"></pre>
+        <div class="cmd-footer-text" id="type-footer"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- المشهد الثالث: صورة العناق النهائي -->
+  <div id="scene-hug">
+    <div class="hug-art">👩‍❤️‍👨</div>
+    <div class="hug-message">
+      Mohamed & Soulefed ❤️✨
+    </div>
+  </div>
+
+  <script>
+    const heartText = 
+`   @@@@@@@@      @@@@@@@@   
  @@@@@@@@@@@@  @@@@@@@@@@@@ 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -225,17 +274,8 @@
         @@@@@@@@@@@@        
           @@@@@@@@          
             @@@@            
-             @@             
-        </pre>
+             @@             `;
 
-        <div class="cmd-footer-text">
-          Tahya Soulefed hermosa <span class="cursor"></span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
     function startExperience() {
       const startBtn = document.getElementById('start-btn');
       const video = document.getElementById('myVideo');
@@ -257,11 +297,70 @@
           setTimeout(() => {
             sceneVideo.style.display = 'none';
             sceneCmd.style.opacity = '1';
+            
+            // بدء طباعة الأمر تلقائياً أمام عينها
+            runCmdAnimation();
           }, 1000);
 
         }, 2000);
 
       }, 3000);
+    }
+
+    // كتابة الأوامر حية حرفاً بحرف
+    function runCmdAnimation() {
+      const pathEl = document.getElementById('type-path');
+      const heartEl = document.getElementById('type-heart');
+      const footerEl = document.getElementById('type-footer');
+      const sceneCmd = document.getElementById('scene-cmd');
+      const sceneHug = document.getElementById('scene-hug');
+
+      const cmdLine = "C:\\Users\\Mohamed> run heart_program.exe";
+      let i = 0;
+
+      // 1. كتابة مسار السطر الأول
+      function typePath() {
+        if (i < cmdLine.length) {
+          pathEl.textContent += cmdLine.charAt(i);
+          i++;
+          setTimeout(typePath, 50);
+        } else {
+          pathEl.innerHTML += ' <span class="cursor"></span>';
+          setTimeout(typeHeart, 600);
+        }
+      }
+
+      // 2. طباعة رسمة القلب خطوة بخطوة
+      function typeHeart() {
+        pathEl.querySelector('.cursor')?.remove();
+        heartEl.textContent = heartText;
+        setTimeout(typeFooter, 800);
+      }
+
+      // 3. كتابة العبارة النهائية
+      const footerText = "Tahya Soulefed hermosa";
+      let j = 0;
+
+      function typeFooter() {
+        if (j < footerText.length) {
+          footerEl.textContent += footerText.charAt(j);
+          j++;
+          setTimeout(typeFooter, 80);
+        } else {
+          footerEl.innerHTML += ' <span class="cursor"></span>';
+
+          // 4. الانتقال لمشهد العناق الأخير بعد 3 ثواني
+          setTimeout(() => {
+            sceneCmd.style.opacity = '0';
+            setTimeout(() => {
+              sceneCmd.style.display = 'none';
+              sceneHug.style.opacity = '1';
+            }, 1500);
+          }, 3500);
+        }
+      }
+
+      typePath();
     }
   </script>
 </body>
